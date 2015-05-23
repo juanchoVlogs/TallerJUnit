@@ -47,6 +47,25 @@ public class Nomina {
     }
     
     /**
+     * calcula la suma de los sueldos reales de una lista de empleados
+     * @param listaEmpleados
+     * @return double
+     */
+    double calcularSumaSueldos(Empleado listaEmpleados[]){
+        double suma = 0;
+        if(listaEmpleados!=null){
+            for(int i= 0; i<listaEmpleados.length; i++){
+                 System.out.println(calcularSueldoReal(listaEmpleados[i]));
+                 suma += calcularSueldoReal(listaEmpleados[i]);
+            }
+            return suma;
+        }
+        else{
+            return suma;
+        }
+    }
+    
+    /**
      * Calcula el sueldo real de una lista de empleados
      * @param listaEmpleados a calcular la lista de los sueldos
      * @return double[] con la lista de los sueldos reales

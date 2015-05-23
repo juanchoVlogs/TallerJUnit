@@ -5,6 +5,8 @@
  */
 package pagonomina;
 
+import javax.swing.JOptionPane;
+
 /**
  *
  * @author alvaroms
@@ -15,7 +17,14 @@ public class PagoNomina {
      * @param args the command line arguments
      */
     public static void main(String[] args) {
-        // TODO code application logic here
+        
+        int opcion = 1;
+        while(opcion!= 0){
+            switch(opcion){
+                case 1:
+                    String nombres = JOptionPane.showInputDialog("Ingrese el nombre del empleado ");
+            }
+        } 
     }
     
 }

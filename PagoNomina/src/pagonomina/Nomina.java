@@ -26,9 +26,9 @@ public class Nomina {
             case "Vendedor":
                 return 1520000;
             case "Operador":
-                return 8450000;
+                return 845000;
             case "Jefe planta":
-                return 8000000;
+                return 900000;
             default:
                 return -1;
                 
@@ -48,16 +48,22 @@ public class Nomina {
     
     /**
      * Calcula el sueldo real de una lista de empleados
-     * @param listaEmpleados a calcular la suma de los sueldos
-     * @return double con la suma de los sueldos reales
+     * @param listaEmpleados a calcular la lista de los sueldos
+     * @return double[] con la lista de los sueldos reales
      */
-    double calcularSueldoEmpleados(Empleado listaEmpleados[]){
+    double[] calcularSueldoEmpleados(Empleado listaEmpleados[]){
         
-        double totalSueldos = 0;
-        for(int i= 0; i<listaEmpleados.length; i++){
-             totalSueldos += calcularSueldoReal(listaEmpleados[i]);
+        if(listaEmpleados!=null){
+            double[] listaSueldos = new double[listaEmpleados.length];
+            for(int i= 0; i<listaEmpleados.length; i++){
+                 System.out.println(calcularSueldoReal(listaEmpleados[i]));
+                 listaSueldos[i] = calcularSueldoReal(listaEmpleados[i]);
+            }
+            return listaSueldos;
         }
-        return totalSueldos;
+        else{
+            return null;
+        }
     }
     
     /**
@@ -67,8 +73,19 @@ public class Nomina {
      */
     double calcularPromedioSueldos(Empleado listaEmpleados[]){
         
-        double promedio = (calcularSueldoEmpleados(listaEmpleados)/listaEmpleados.length);
-        return promedio;
+        double promedio = 0;
+        
+        if(listaEmpleados!=null){
+            for(int i= 0; i<listaEmpleados.length; i++){
+                 promedio += calcularSueldoReal(listaEmpleados[i]);
+            }
+            return (promedio/listaEmpleados.length);
+        }
+        else{
+            return promedio;
+        }
+            
+        
     }
     
     
@@ -79,12 +96,16 @@ public class Nomina {
      */
     String[] obtenerIdEmplados(Empleado listaEmpleados[]){
         
-        String[] idCedula = new String[listaEmpleados.length];
-        for(int i= 0; i<listaEmpleados.length; i++){
-             idCedula[i] = listaEmpleados[i].getCedula();
+        if(listaEmpleados!=null){
+            String[] idCedula = new String[listaEmpleados.length];
+            for(int i= 0; i<listaEmpleados.length; i++){
+                 idCedula[i] = listaEmpleados[i].getCedula();
+            }
+
+            return idCedula;
+        }else{
+            return null;
         }
-        
-        return idCedula;
         
     }
     
@@ -95,10 +116,15 @@ public class Nomina {
      */
     double calcularTotalAPagar(Empleado listaEmpleados[]){
         double totalSueldos = 0;
-        for(int i= 0; i<listaEmpleados.length; i++){
-             totalSueldos += calcularSueldoBruto(listaEmpleados[i]);
+        if(listaEmpleados!=null){
+            for(int i= 0; i<listaEmpleados.length; i++){
+                 totalSueldos += calcularSueldoBruto(listaEmpleados[i]);
+            }
+            return totalSueldos;
+        }else{
+            return 0;
         }
-        return totalSueldos;
+        
     }
     
     
@@ -110,12 +136,17 @@ public class Nomina {
     String obtenerEmpleadoGanaMenos(Empleado listaEmpleados[]){
         
         int menor = 0;
-        for(int i= 0; i<listaEmpleados.length; i++){
-             if(calcularSueldoBruto(listaEmpleados[menor])>calcularSueldoBruto(listaEmpleados[i])){
-                 menor = i;
-             }
+        if(listaEmpleados!=null){
+            for(int i= 0; i<listaEmpleados.length; i++){
+                 if(calcularSueldoBruto(listaEmpleados[menor])>calcularSueldoBruto(listaEmpleados[i])){
+                     menor = i;
+                 }
+            }
+
+            return "El empleados de menor sueldo es:"+listaEmpleados[menor].getNombres()+" "+listaEmpleados[menor].getApellidos()+", cedula: "+listaEmpleados[menor].getCedula();
+        }else{
+            return "No hay empleados en la lista";
+
         }
-        
-        return "El empleados de menor sueldo es:"+listaEmpleados[menor].getNombres()+" "+listaEmpleados[menor].getApellidos()+", cedula: "+listaEmpleados[menor].getCedula();
     }
 }
